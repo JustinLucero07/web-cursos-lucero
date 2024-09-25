@@ -4,3 +4,28 @@ body{
     padding: 0;
     box-sizing: border-box;
 }
+
+header{
+    background-color: cornflowerblue;
+    color: black;
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul{
+    display: flex;
+    justify-content: center ;
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li a{
+    color: dimgray;
+    text-decoration: double;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover{
+    color: bisque;
+}
