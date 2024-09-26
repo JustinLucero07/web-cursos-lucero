@@ -23,4 +23,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    window.mostrarDetalles = function(index) {
+        const detalles = document.getElementById(`detalles-${index}`);
+        if (detalles.style.display === 'none') {
+            detalles.style.display = 'block';
+        } else {
+            detalles.style.display = 'none';
+        }
+    };
+
+    formCurso.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const nuevoCurso = {
+            nombre: document.getElementById('nombre').value,
+            instructor: document.getElementById('instructor').value,
+            fecha: document.getElementById('fecha').value,
+            duracion: document.getElementById('duracion').value,
+            descripcion: document.getElementById('descripcion').value,
+        };
+        
+        cursos.push(nuevoCurso);
+        localStorage.setItem('cursos', JSON.stringify(cursos));
+        formCurso.reset();
+        mostrarCursos();
+    });
+
+    mostrarCursos();
 });
+
