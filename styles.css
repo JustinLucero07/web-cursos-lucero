@@ -20,6 +20,8 @@ nav ul{
 }
 
 nav ul li a{
+    position: relative;
+    margin: 10px;
     color: dimgray;
     text-decoration: double;
     font-size: 18px;
