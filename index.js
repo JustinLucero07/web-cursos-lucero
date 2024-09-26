@@ -10,6 +10,19 @@ function mostrarDetalles(cursoId) {
     }
 }
 
+function eliminarCurso(cursoId) {
+    const cursoElemento = document.getElementById(cursoId);
+    if (cursoElemento) {
+        cursoElemento.parentElement.remove(); 
+    }
+
+    let cursos = JSON.parse(localStorage.getItem('cursos')) || [];
+    cursos = cursos.filter(curso => curso.id !== cursoId);
+    localStorage.setItem('cursos', JSON.stringify(cursos));
+}
+
+
+
 function cargarCursos() {
     const cursos = JSON.parse(localStorage.getItem('cursos')) || [];
     cursos.forEach(curso => agregarCursoDOM(curso));
@@ -23,6 +36,7 @@ function agregarCursoDOM(curso) {
         Fecha de Inicio: ${curso.fecha}<br>
         Duración: ${curso.duracion}<br>
         <button onclick="mostrarDetalles('${curso.id}')">Ver más detalles</button>
+        <button onclick="eliminarCurso('${curso.id}')" class="eliminar">x</button>
         <div id="${curso.id}" class="detalles">${curso.descripcion}</div>
     `;
     document.getElementById('listacursos').querySelector('ul').appendChild(nuevoCurso);
