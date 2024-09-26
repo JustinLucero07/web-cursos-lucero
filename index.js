@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    formCurso.addEventListener('submit', (e) => {
+    formCurso.addEventListener('agregar', (e) => {
         e.preventDefault();
         const nuevoCurso = {
             nombre: document.getElementById('nombre').value,
