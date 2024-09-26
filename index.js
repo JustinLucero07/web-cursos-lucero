@@ -1,53 +1,52 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const listaCursos = document.getElementById('lista-cursos');
-    const formCurso = document.getElementById('form-curso');
-
-    let cursos = JSON.parse(localStorage.getItem('cursos')) || [];
-
-    function mostrarCursos() {
-        listaCursos.innerHTML = '';
-        cursos.forEach((curso, index) => {
-            const cursoDiv = document.createElement('div');
-            cursoDiv.classList.add('curso');
-            cursoDiv.innerHTML = `
-                <h3>${curso.nombre}</h3>
-                <p>Instructor: ${curso.instructor}</p>
-                <p>Fecha de inicio: ${curso.fecha}</p>
-                <p>Duración: ${curso.duracion} semanas</p>
-                <button onclick="mostrarDetalles(${index})">Ver más detalles</button>
-                <div class="detalles" id="detalles-${index}" style="display:none;">
-                    <p>${curso.descripcion}</p>
-                </div>
-            `;
-            listaCursos.appendChild(cursoDiv);
-        });
-    }
-
-    window.mostrarDetalles = function(index) {
-        const detalles = document.getElementById(`detalles-${index}`);
-        if (detalles.style.display === 'none') {
-            detalles.style.display = 'block';
-        } else {
-            detalles.style.display = 'none';
-        }
-    };
-
-    formCurso.addEventListener('agregar', (e) => {
-        e.preventDefault();
-        const nuevoCurso = {
-            nombre: document.getElementById('nombre').value,
-            instructor: document.getElementById('instructor').value,
-            fecha: document.getElementById('fecha').value,
-            duracion: document.getElementById('duracion').value,
-            descripcion: document.getElementById('descripcion').value,
-        };
-        
-        cursos.push(nuevoCurso);
-        localStorage.setItem('cursos', JSON.stringify(cursos));
-        formCurso.reset();
-        mostrarCursos();
+function mostrarDetalles(cursoId) {
+    const detalles = document.querySelectorAll('.detalles');
+    detalles.forEach(detalle => {
+        detalle.style.display = 'none';
     });
 
-    mostrarCursos();
+    const detalleSeleccionado = document.getElementById(cursoId);
+    if (detalleSeleccionado) {
+        detalleSeleccionado.style.display = 'block';
+    }
+}
+
+function cargarCursos() {
+    const cursos = JSON.parse(localStorage.getItem('cursos')) || [];
+    cursos.forEach(curso => agregarCursoDOM(curso));
+}
+
+function agregarCursoDOM(curso) {
+    const nuevoCurso = document.createElement('li');
+    nuevoCurso.innerHTML = `
+        <strong>${curso.nombre}</strong><br>
+        Docente: ${curso.docente}<br>
+        Fecha de Inicio: ${curso.fecha}<br>
+        Duración: ${curso.duracion}<br>
+        <button onclick="mostrarDetalles('${curso.id}')">Ver más detalles</button>
+        <div id="${curso.id}" class="detalles">${curso.descripcion}</div>
+    `;
+    document.getElementById('listacursos').querySelector('ul').appendChild(nuevoCurso);
+}
+
+document.getElementById('formulario').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const nombre = document.getElementById('nombre').value;
+    const docente = document.getElementById('docente').value;
+    const fecha = document.getElementById('fecha').value;
+    const duracion = document.getElementById('duracion').value;
+    const descripcion = document.getElementById('descripcion').value;
+    const id = nombre.replace(/\s+/g, '');
+
+    const nuevoCurso = { nombre, docente, fecha, duracion, descripcion, id };
+    
+    const cursos = JSON.parse(localStorage.getItem('cursos')) || [];
+    cursos.push(nuevoCurso);
+    localStorage.setItem('cursos', JSON.stringify(cursos));
+
+    agregarCursoDOM(nuevoCurso);
+
+    document.getElementById('formulario').reset();
 });
 
+window.onload = cargarCursos;

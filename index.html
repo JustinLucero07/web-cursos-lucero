@@ -35,6 +35,9 @@
                     Fecha de Inicio: 2024-10-01<br>
                     Duración: 8 semanas<br>
                     <button onclick="mostrarDetalles('curso1')">Ver más detalles</button>
+                    <div id="curso1" class="detalles" style="display:none;">
+                        <p>Aprenderás los conceptos básicos de programación utilizando Python.</p>
+                    </div>
                 </li>
                 <li>
                     <strong>Diseño Gráfico con Adobe Photoshop</strong><br>
@@ -42,6 +45,9 @@
                     Fecha de Inicio: 2024-11-05<br>
                     Duración: 6 semanas<br>
                     <button onclick="mostrarDetalles('curso2')">Ver más detalles</button>
+                    <div id="curso2" class="detalles" style="display:none;">
+                        <p>Aprende a crear diseños visuales impactantes utilizando Adobe Photoshop.</p>
+                    </div>
                 </li>
                 <li>
                     <strong>Marketing Digital para Emprendedores</strong><br>
@@ -49,6 +55,9 @@
                     Fecha de Inicio: 2024-09-15<br>
                     Duración: 4 semanas<br>
                     <button onclick="mostrarDetalles('curso3')">Ver más detalles</button>
+                    <div id="curso3" class="detalles" style="display:none;">
+                        <p>Estrategias de marketing digital para impulsar tu negocio.</p>
+                    </div>
                 </li>
                 <li>
                     <strong>Desarrollo Web Full Stack</strong><br>
@@ -56,6 +65,9 @@
                     Fecha de Inicio: 2024-12-01<br>
                     Duración: 12 semanas<br>
                     <button onclick="mostrarDetalles('curso4')">Ver más detalles</button>
+                    <div id="curso4" class="detalles" style="display:none;">
+                        <p>Aprende a construir aplicaciones web completas desde cero.</p>
+                    </div>
                 </li>
                 <li>
                     <strong>Fotografía para Principiantes</strong><br>
@@ -63,6 +75,9 @@
                     Fecha de Inicio: 2024-10-20<br>
                     Duración: 5 semanas<br>
                     <button onclick="mostrarDetalles('curso5')">Ver más detalles</button>
+                    <div id="detalles-curso5" class="detalles" style="display:none;">
+                        <p>Introducción a la fotografía y técnicas básicas de toma de fotos.</p>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -70,7 +85,7 @@
 
     <section id="agregar">
         <h2>Agregar Nuevo Curso</h2>
-        <h3>Para agregar el curso se tiene que llenar los siguientes datos</h3>
+        <h4>Para agregar el curso se tiene que llenar los siguientes datos</h4>
         <form id="formulario">
             <label for="nombre">Nombre del Curso:</label>
             <input type="text" id="nombre" required>
@@ -87,7 +102,7 @@
             <label for="descripcion">Descripcion:</label>
             <input type="text" id="descripcion" required>
 
-            <button type="agregar">Agregar Curso</button>
+            <button type="submit">Agregar Curso</button>
         </form>
     </section>
 

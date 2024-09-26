@@ -36,9 +36,30 @@ section{
     padding: 20px;
 }
 
-#listacursos{
-    display: flex;
-    flex-wrap: wrap;
+#cursos {
+    padding: 20px;
+}
+
+#listacursos {
+    margin-top: 20px;
+}
+
+#listacursos ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#listacursos li {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 15px;
+    transition: background-color 0.3s;
+}
+
+#listacursos li:hover {
+    background-color: #e0e0e0;
 }
 
 .curso{
@@ -75,4 +96,30 @@ form button{
 
 form button:hover{
     background-color: #333;
+}
+
+.detalles {
+    display: none; /* Ocultar detalles por defecto */
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
 }
