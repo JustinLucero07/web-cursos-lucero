@@ -29,3 +29,48 @@ nav ul li a{
 nav ul li a:hover{
     color: bisque;
 }
+
+section{
+    padding: 20px;
+}
+
+#listacursos{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.curso{
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    width:  calc(33.33% - 40px);
+    transition: transform 0.3s ease;
+}
+
+.curso:hover{
+    transform: scale(1.05);
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 20px auto;
+}
+
+form label, form input, form textarea{
+    margin-bottom: 10px;
+}
+
+form button{
+    padding: 10px;
+    background-color: burlywood;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3x ease;
+}
+
+form button:hover{
+    background-color: #333;
+}
