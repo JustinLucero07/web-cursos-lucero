@@ -55,7 +55,9 @@ section{
     border-radius: 5px;
     margin-bottom: 10px;
     padding: 15px;
+    position: relative;
     transition: background-color 0.3s;
+    
 }
 
 #listacursos li:hover {
@@ -86,7 +88,8 @@ form label, form input, form textarea{
 }
 
 form button{
-    padding: 10px;
+    width: 107%;
+    padding: 16px;
     background-color: burlywood;
     border: none;
     color: white;
@@ -133,11 +136,48 @@ button:hover {
     font-size: 16px;
     margin-right: 10px;
     border-radius: 50%;
-    position: relative;
-    top: -90px;
-    left: 523px;
+    position: absolute; /* Posicionamiento absoluto */
+    top: 10px; /* Ajusta la posición superior */
+    right: 10px; /* Posiciona a la derecha */
 }
 
 .eliminar:hover {
     background-color: red;
+}
+
+
+label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto al enfocar los inputs */
+input[type="text"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+/* Cambia el color del label al enfocar el campo */
+input[type="text"]:focus + label {
+    color: #007bff;
+}
+
+/* Transiciones suaves */
+input, label {
+    transition: all 0.3s ease;
 }
