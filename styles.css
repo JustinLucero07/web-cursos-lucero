@@ -228,3 +228,31 @@ input[type="text"]:focus + label{
 input, label {
     transition: all 0.3s ease;
 }
+
+/* Animaciones para la parte de contacto */
+footer {
+    background-color: cornflowerblue; /* Fondo oscuro */
+    color: white; /* Texto en blanco */
+    text-align: center; /* Centrar contenido */
+    padding: 20px 0; /* Espaciado arriba y abajo */
+    font-family: 'Times New Roman', Times, serif;
+}
+
+footer h2 {
+    font-size: 24px; /* Tamaño de título */
+    margin-bottom: 10px; /* Espaciado inferior del título */
+    color: black; /* Color dorado para el título */
+}
+
+footer p {
+    font-size: 18px; /* Tamaño de texto */
+    margin: 5px 0; /* Margen entre los párrafos */
+}
+
+footer p a:hover {
+    color: #ff4500; /* Cambia a un color más brillante al pasar el cursor */
+}
+
+footer {
+    border-top: 1px solid black;
+}
