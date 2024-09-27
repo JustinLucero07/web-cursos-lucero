@@ -9,17 +9,24 @@ function mostrarDetalles(cursoId) {
         detalleSeleccionado.style.display = 'block';
     }
 }
-
+//Se modifica este metodo para agregarle una animacion al elinimar un curso de la lista
 function eliminarCurso(cursoId) {
     const cursoElemento = document.getElementById(cursoId);
     if (cursoElemento) {
-        cursoElemento.parentElement.remove(); 
+        // Aplicar animación de salida
+        cursoElemento.style.animation = 'fadeOut 0.3s forwards';
+        
+        // Esperar a que termine la animación para eliminar el elemento
+        setTimeout(() => {
+            cursoElemento.parentElement.remove();
+        }, 300); // Coincide con la duración de la animación (0.3s)
     }
 
     let cursos = JSON.parse(localStorage.getItem('cursos')) || [];
     cursos = cursos.filter(curso => curso.id !== cursoId);
     localStorage.setItem('cursos', JSON.stringify(cursos));
 }
+
 
 
 

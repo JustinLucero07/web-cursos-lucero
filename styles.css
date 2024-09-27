@@ -69,8 +69,27 @@ section{
     padding: 15px;
     position: relative;
     transition: background-color 0.3s;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: slideIn 0.3s forwards;
     
 }
+/*Anmacion para cuando se agregue un curso a la lista*/
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*Animacion para cuandp se elimine un curso de la lista*/
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
 
 #listacursos li:hover {
     background-color: #e0e0e0;
