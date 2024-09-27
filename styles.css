@@ -12,6 +12,12 @@ header{
     text-align: center;
 }
 
+section {
+    padding: 60px 20px; /* Espaciado para las secciones */
+    border: 1px solid #ccc; /* Opcional: borde para las secciones */
+    margin: 20px 0; /* Espaciado entre secciones */
+}
+
 nav ul{
     display: flex;
     justify-content: center ;
@@ -26,6 +32,12 @@ nav ul li a{
     text-decoration: double;
     font-size: 18px;
     transition: color 0.3s ease;
+    transform:0.3s ease;
+}
+
+/*Tranciciones enlaces*/
+nav ul li a:focus, nav ul li a:active {
+    transform: scale(1.05);
 }
 
 nav ul li a:hover{
@@ -108,6 +120,14 @@ form button:hover{
     border-radius: 5px;
     padding: 10px;
     margin-top: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* animación para mostrar y ocultar detalles */
+.detalles.show {
+    display: block;
+    opacity: 1;
 }
 
 button {
@@ -145,6 +165,14 @@ button:hover {
     background-color: red;
 }
 
+/* Animación al eliminar curso */
+.eliminar {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.eliminar:active {
+    transform: scale(0.9);
+}
 
 label {
     display: block;
@@ -173,7 +201,7 @@ input[type="text"]:focus {
 }
 
 /* Cambia el color del label al enfocar el campo */
-input[type="text"]:focus + label {
+input[type="text"]:focus + label{
     color: #007bff;
 }
 

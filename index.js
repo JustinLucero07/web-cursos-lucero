@@ -64,3 +64,30 @@ document.getElementById('formulario').addEventListener('submit', function(event)
 });
 
 window.onload = cargarCursos;
+
+/*Animaciones*/ 
+function mostrarDetalles(id) {
+    const detalles = document.getElementById(id);
+    if (detalles.style.display === "none" || detalles.style.display === "") {
+        detalles.classList.add('show'); 
+        detalles.style.display = "block";
+    } else {
+        detalles.classList.remove('show'); 
+        setTimeout(() => {
+            detalles.style.display = "none"; 
+        }, 300); 
+    }
+}
+
+// animacion para trancision entre enlaces
+document.addEventListener("DOMContentLoaded", function() {
+    const enlaces = document.querySelectorAll('nav a');
+
+    enlaces.forEach(enlace => {
+        enlace.addEventListener('click', function(e) {
+            e.preventDefault(); // Evita el comportamiento predeterminado del enlace
+            const destino = document.querySelector(this.getAttribute('href')); // Obtener el destino
+            destino.scrollIntoView({ behavior: 'smooth' }); // Desplazarse suavemente al destino
+        });
+    });
+});
