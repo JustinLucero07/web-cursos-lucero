@@ -1,53 +1,113 @@
-body{
-    font-family: 'Times New Roman', Times, serif;
+/* Estilo global */
+body {
+    font-family: 'Georgia', serif; /* Fuente elegante */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: #eaeaea; /* Color de fondo suave */
 }
 
-header{
-    background-color: cornflowerblue;
-    color: black;
+/* Encabezado */
+header {
+    background-color: #2c3e50; /* Color elegante */
+    color: #ecf0f1; /* Color de texto claro */
     padding: 20px;
     text-align: center;
+    font-size: 2.5em; /* Tamaño de fuente mayor */
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
 }
 
-section {
-    padding: 60px 20px; /* Espaciado para las secciones */
-    border: 1px solid #ccc; /* Opcional: borde para las secciones */
-    margin: 20px 0; /* Espaciado entre secciones */
-}
-
-nav ul{
+/* Navegación */
+nav ul {
     display: flex;
-    justify-content: center ;
+    justify-content: center;
     list-style: none;
     padding: 0;
 }
 
-nav ul li a{
+nav ul li a {
     position: relative;
     margin: 10px;
-    color: dimgray;
-    text-decoration: double;
-    font-size: 18px;
-    transition: color 0.3s ease;
-    transform:0.3s ease;
+    color: #f39c12; /* Color dorado para el menú */
+    text-decoration: none; /* Sin subrayado */
+    font-size: 18px; /* Tamaño de fuente mayor para el menú */
+    transition: color 0.3s ease, transform 0.3s ease; /* Transiciones enlaces */
 }
 
-/*Tranciciones enlaces*/
-nav ul li a:focus, nav ul li a:active {
+nav ul li a:focus,
+nav ul li a:active {
     transform: scale(1.05);
 }
 
-nav ul li a:hover{
-    color: bisque;
+nav ul li a:hover {
+    color: #d35400; /* Color más oscuro al pasar el mouse */
+    transform: scale(1.05);
 }
 
-section{
-    padding: 20px;
+/* Secciones */
+section {
+    padding: 60px 20px; /* Espaciado para las secciones */
+    border: 1px solid #ccc; /* Borde suave */
+    margin: 20px 0; /* Espaciado entre secciones */
+    border-radius: 10px;
+    background-color: #fff; /* Fondo blanco */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Transición suave */
 }
 
+/* Efecto de desplazamiento al hacer hover */
+section:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Aumenta la sombra al hacer hover */
+}
+
+/* Títulos de las secciones */
+section h2 {
+    font-size: 32px; /* Tamaño del texto del título */
+    color: #2c3e50; /* Color del texto */
+    margin-bottom: 15px; /* Espaciado inferior */
+    border-bottom: 2px solid #007bff; /* Línea debajo del título */
+    padding-bottom: 10px; /* Espaciado interno inferior */
+}
+
+/* Estilo para los párrafos dentro de las secciones */
+section p {
+    font-size: 16px; /* Tamaño de letra más pequeño */
+    color: #555; /* Color más suave para el texto */
+    line-height: 1.8; /* Espaciado entre líneas */
+    margin-bottom: 20px; /* Espaciado inferior */
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 93%; /* Ocupa todo el ancho */
+    padding: 10px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Borde suave */
+    border-radius: 5px; /* Bordes redondeados */
+    margin-bottom: 15px; /* Espaciado inferior */
+    font-size: 16px; /* Tamaño de letra */
+}
+
+/* Botones dentro de las secciones */
+section .btn {
+    background-color: #2980b9; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 12px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar */
+    transition: background-color 0.3s ease; /* Transición para el color de fondo */
+}
+
+/* Efecto al pasar el cursor sobre el botón */
+section .btn:hover {
+    background-color: #1a6e9f; /* Color más oscuro al hacer hover */
+}
+
+/* Lista de cursos */
 #cursos {
     padding: 20px;
 }
@@ -61,7 +121,7 @@ section{
     padding: 0;
 }
 
-
+/* Estilo para cada elemento del curso */
 #listacursos li {
     background-color: #f4f4f4;
     border: 1px solid #ddd;
@@ -69,12 +129,24 @@ section{
     margin-bottom: 10px;
     padding: 15px;
     position: relative;
-    transition: background-color 0.3s, transform 0.3s; /* Animación suave */
+    transition: background-color 0.3s, transform 0.3s;
     opacity: 0;
     transform: translateY(-20px);
-    animation: slideIn 0.3s forwards;
+    animation: slideIn 0.3s forwards; /* Animación al agregar */
+    justify-content: space-between;
 }
-/*Anmacion para cuando se agregue un curso a la lista*/
+
+/* Al eliminar el curso */
+#listacursos li.eliminar-animation {
+    animation: slideOut 0.3s forwards; /* Animación al eliminar */
+}
+
+#listacursos strong {
+    font-size: 1.5em; /* Tamaño de fuente mayor */
+    font-family: 'Georgia', serif; /* Fuente elegante */
+    color: #2c3e50; /* Color del texto */
+}
+
 @keyframes slideIn {
     to {
         opacity: 1;
@@ -82,58 +154,69 @@ section{
     }
 }
 
-/*Animacion para cuandp se elimine un curso de la lista*/
-@keyframes fadeOut {
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
     to {
         opacity: 0;
         transform: translateY(-20px);
     }
 }
 
-
-/* Estilo cuando se despliega la información del curso */
+/* Hover en elementos de cursos */
 #listacursos li:hover {
     background-color: #e0e0e0;
     transform: scale(1.05); /* Efecto de escala en hover */
 }
 
-.curso{
+/* Curso */
+.curso {
     border: 1px solid #ddd;
     padding: 10px;
     margin: 10px;
-    width:  calc(33.33% - 40px);
+    width: calc(33.33% - 40px);
     transition: transform 0.3s ease;
 }
 
-.curso:hover{
+.curso:hover {
     transform: scale(1.05);
 }
 
-form{
+/* Formulario */
+form {
     display: flex;
     flex-direction: column;
     width: 300px;
     margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-form label, form input, form textarea{
+form label,
+form input,
+form textarea {
     margin-bottom: 10px;
 }
 
-form button{
-    width: 107%;
+form button {
+    width: 99%;
     padding: 16px;
-    background-color: burlywood;
+    background-color: #d4b35c; /* Color elegante */
     border: none;
     color: white;
     cursor: pointer;
-    transition: background-color 0.3x ease;
+    transition: background-color 0.3s ease; /* Corregido el error de tiempo */
 }
 
-form button:hover{
-    background-color: #333;
+form button:hover {
+    background-color: #b79a4e; /* Color más oscuro al hacer hover */
 }
 
+/* Detalles */
 .detalles {
     display: none; /* Oculto por defecto */
     background-color: #f9f9f9;
@@ -146,118 +229,73 @@ form button:hover{
     transition: opacity 0.3s ease, transform 0.3s ease; /* Animación suave */
 }
 
-/* Cuando se muestran los detalles */
 .detalles.show {
     display: block;
     opacity: 1;
     transform: scale(1); /* Crece suavemente */
 }
 
+/* Estilo de los párrafos en detalles */
+.detalles p {
+    font-size: 18px; /* Tamaño mayor */
+    color: #555;
+    margin: 5px 0;
+    line-height: 1.5;
+    transition: color 0.3s ease; /* Transición para color */
+}
 
+.detalles p:hover {
+    color: #007bff; /* Cambia color al pasar el cursor */
+}
+
+/* Estilo del botón "Ver más detalles" */
 button {
-    background-color: #4CAF50;
-    border: none;
+    background-color: #1f8b4d; /* Color elegante */
     color: white;
+    border: none;
     padding: 10px 15px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     margin-top: 10px;
+    margin-left: 5px; /* Mueve el botón 5 píxeles a la derecha */
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 10px;
+    font-size: 1em;
+    font-family: 'Georgia', serif; /* Fuente elegante */
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #2ed573; /* Color más brillante al pasar el cursor */
 }
 
+/* Botón de eliminar (x) */
 .eliminar {
     background-color: #ccc;
     color: white;
     border: none;
     padding: 5px 10px;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
-    margin-right: 10px;
-    border-radius: 50%;
-    position: absolute; /* Posicionamiento absoluto */
-    top: 10px; /* Ajusta la posición superior */
-    right: 10px; /* Posiciona a la derecha */
+    position: absolute;
+    right: 10px; /* Posición a la derecha */
+    top: 10px; /* Espaciado desde la parte superior */
+    transition: background-color 0.3s ease;
 }
 
 .eliminar:hover {
-    background-color: red;
+    background-color: #e74c3c; /* Color al pasar el mouse */
+    transform: scale(1.1); /* Aumenta el tamaño al pasar el mouse */
 }
 
-/* Animación al eliminar curso */
-.eliminar {
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.eliminar:active {
-    transform: scale(0.9);
-}
-
-label {
-    display: block;
-    font-size: 16px;
-    margin-bottom: 8px;
-    color: #333;
-    transition: color 0.3s ease;
-}
-
-input[type="text"] {
+/* Footer */
+footer {
+    background-color: #2c3e50; /* Color elegante */
+    color: #ecf0f1; /* Color de texto claro */
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
     width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Efecto al enfocar los inputs */
-input[type="text"]:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
-    outline: none;
-}
-
-/* Cambia el color del label al enfocar el campo */
-input[type="text"]:focus + label{
-    color: #007bff;
-}
-
-/* Transiciones suaves */
-input, label {
-    transition: all 0.3s ease;
-}
-
-/* Animaciones para la parte de contacto */
-footer {
-    background-color: cornflowerblue; /* Fondo oscuro */
-    color: white; /* Texto en blanco */
-    text-align: center; /* Centrar contenido */
-    padding: 20px 0; /* Espaciado arriba y abajo */
-    font-family: 'Times New Roman', Times, serif;
-}
-
-footer h2 {
-    font-size: 24px; /* Tamaño de título */
-    margin-bottom: 10px; /* Espaciado inferior del título */
-    color: black; /* Color dorado para el título */
-}
-
-footer p {
-    font-size: 18px; /* Tamaño de texto */
-    margin: 5px 0; /* Margen entre los párrafos */
-}
-
-footer p a:hover {
-    color: #ff4500; /* Cambia a un color más brillante al pasar el cursor */
-}
-
-footer {
-    border-top: 1px solid black;
+    box-shadow: 0 -1px 15px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
 }
