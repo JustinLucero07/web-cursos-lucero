@@ -1,14 +1,13 @@
-function mostrarDetalles(cursoId) {
-    const detalles = document.querySelectorAll('.detalles');
-    detalles.forEach(detalle => {
-        detalle.style.display = 'none';
-    });
-
-    const detalleSeleccionado = document.getElementById(cursoId);
-    if (detalleSeleccionado) {
-        detalleSeleccionado.style.display = 'block';
+//Se modifica para el nuevo diseño y mostrar todo los detalles
+function mostrarDetalles(id) {
+    var detalles = document.getElementById(id);
+    if (detalles.classList.contains('show')) {
+        detalles.classList.remove('show');
+    } else {
+        detalles.classList.add('show');
     }
 }
+
 //Se modifica este metodo para agregarle una animacion al elinimar un curso de la lista
 function eliminarCurso(cursoId) {
     const cursoElemento = document.getElementById(cursoId);
@@ -34,20 +33,23 @@ function cargarCursos() {
     const cursos = JSON.parse(localStorage.getItem('cursos')) || [];
     cursos.forEach(curso => agregarCursoDOM(curso));
 }
-
+//Se realiza un cambio en este metodo debido al nuevo diseño que se realiza
 function agregarCursoDOM(curso) {
     const nuevoCurso = document.createElement('li');
     nuevoCurso.innerHTML = `
         <strong>${curso.nombre}</strong><br>
-        Docente: ${curso.docente}<br>
-        Fecha de Inicio: ${curso.fecha}<br>
-        Duración: ${curso.duracion}<br>
         <button onclick="mostrarDetalles('${curso.id}')">Ver más detalles</button>
         <button onclick="eliminarCurso('${curso.id}')" class="eliminar">x</button>
-        <div id="${curso.id}" class="detalles">${curso.descripcion}</div>
+        <div id="${curso.id}" class="detalles" style="display:none;">
+            <p><strong>Docente:</strong> ${curso.docente}</p>
+            <p><strong>Fecha de Inicio:</strong> ${curso.fecha}</p>
+            <p><strong>Duración:</strong> ${curso.duracion}</p>
+            <p>${curso.descripcion}</p>
+        </div>
     `;
     document.getElementById('listacursos').querySelector('ul').appendChild(nuevoCurso);
 }
+
 
 document.getElementById('formulario').addEventListener('submit', function(event) {
     event.preventDefault();

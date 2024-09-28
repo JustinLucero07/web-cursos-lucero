@@ -61,6 +61,7 @@ section{
     padding: 0;
 }
 
+
 #listacursos li {
     background-color: #f4f4f4;
     border: 1px solid #ddd;
@@ -68,11 +69,10 @@ section{
     margin-bottom: 10px;
     padding: 15px;
     position: relative;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s; /* Animación suave */
     opacity: 0;
     transform: translateY(-20px);
     animation: slideIn 0.3s forwards;
-    
 }
 /*Anmacion para cuando se agregue un curso a la lista*/
 @keyframes slideIn {
@@ -91,8 +91,10 @@ section{
 }
 
 
+/* Estilo cuando se despliega la información del curso */
 #listacursos li:hover {
     background-color: #e0e0e0;
+    transform: scale(1.05); /* Efecto de escala en hover */
 }
 
 .curso{
@@ -133,21 +135,24 @@ form button:hover{
 }
 
 .detalles {
-    display: none; /* Ocultar detalles por defecto */
+    display: none; /* Oculto por defecto */
     background-color: #f9f9f9;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
     margin-top: 10px;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transform: scale(0.95); /* Tamaño reducido al inicio */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Animación suave */
 }
 
-/* animación para mostrar y ocultar detalles */
+/* Cuando se muestran los detalles */
 .detalles.show {
     display: block;
     opacity: 1;
+    transform: scale(1); /* Crece suavemente */
 }
+
 
 button {
     background-color: #4CAF50;
