@@ -40,7 +40,7 @@
                     <button onclick="eliminarCurso('curso1')" class="eliminar">x</button>
                     <div id="curso1" class="detalles">
                         <p><strong>Docente:</strong> Carlos Ramírez</p>
-                        <p><strong>Fecha de Inicio:</strong> 2024-10-01</p>
+                        <p><strong>Fecha de Inicio:</strong> 01/10/2024</p>
                         <p><strong>Duración:</strong> 8 semanas</p>
                         <p>Aprenderás los conceptos básicos de programación utilizando Python.</p>
                     </div>
@@ -51,7 +51,7 @@
                     <button onclick="eliminarCurso('curso2')" class="eliminar">x</button>
                     <div id="curso2" class="detalles">
                         <p><strong>Docente:</strong> Ana Gómez</p>
-                        <p><strong>Fecha de Inicio:</strong> 2024-11-05</p>
+                        <p><strong>Fecha de Inicio:</strong> 05/11/2024</p>
                         <p><strong>Duración:</strong> 6 semanas</p>
                         <p>Aprende a crear diseños visuales impactantes utilizando Adobe Photoshop.</p>
                     </div>
@@ -62,7 +62,7 @@
                     <button onclick="eliminarCurso('curso3')" class="eliminar">x</button>
                     <div id="curso3" class="detalles">
                         <p><strong>Docente:</strong> Laura Medina</p>
-                        <p><strong>Fecha de Inicio:</strong> 2024-09-15</p>
+                        <p><strong>Fecha de Inicio:</strong> 15/09/2024</p>
                         <p><strong>Duración:</strong> 4 semanas</p>
                         <p>Estrategias de marketing digital para impulsar tu negocio.</p>
                     </div>
@@ -73,7 +73,7 @@
                     <button onclick="eliminarCurso('curso4')" class="eliminar">x</button>
                     <div id="curso4" class="detalles">
                         <p><strong>Docente:</strong> Javier Martínez</p>
-                        <p><strong>Fecha de Inicio:</strong> 2024-12-01</p>
+                        <p><strong>Fecha de Inicio:</strong> 01/12/2024</p>
                         <p><strong>Duración:</strong> 12 semanas</p>
                         <p>Aprende a construir aplicaciones web completas desde cero.</p>
                     </div>
@@ -105,13 +105,13 @@
             <input type="text" id="docente" required placeholder="Docente"> 
 
             <label for="fecha">Fecha de Inicio:</label>
-            <input type="text" id="fecha" required placeholder="aa-mm-dd">
+            <input type="text" id="fecha" required placeholder="dd/mm/yyyy">
 
             <label for="duracion">Duracion:</label>
             <input type="text" id="duracion" required placeholder="Numero de semanas">
 
             <label for="descripcion">Descripcion:</label>
-            <input type="text" id="descripcion" required placeholder="De que trata el curso">
+            <textarea name="descripcion" id="descripcion"></textarea>
 
             <button type="submit">Agregar Curso</button>
         </form>

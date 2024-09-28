@@ -34,6 +34,7 @@ function cargarCursos() {
     cursos.forEach(curso => agregarCursoDOM(curso));
 }
 //Se realiza un cambio en este metodo debido al nuevo diseño que se realiza
+
 function agregarCursoDOM(curso) {
     const nuevoCurso = document.createElement('li');
     nuevoCurso.innerHTML = `
@@ -52,25 +53,111 @@ function agregarCursoDOM(curso) {
 
 
 document.getElementById('formulario').addEventListener('submit', function(event) {
-    event.preventDefault();
+    event.preventDefault(); // Evitar el envío del formulario por defecto
 
-    const nombre = document.getElementById('nombre').value;
-    const docente = document.getElementById('docente').value;
-    const fecha = document.getElementById('fecha').value;
-    const duracion = document.getElementById('duracion').value;
-    const descripcion = document.getElementById('descripcion').value;
-    const id = nombre.replace(/\s+/g, '');
+    // Obtener los valores de los campos
+    const nombre = document.getElementById('nombre');
+    const docente = document.getElementById('docente');
+    const fecha = document.getElementById('fecha');
+    const duracion = document.getElementById('duracion');
+    const descripcion = document.getElementById('descripcion');
 
-    const nuevoCurso = { nombre, docente, fecha, duracion, descripcion, id };
-    
-    const cursos = JSON.parse(localStorage.getItem('cursos')) || [];
-    cursos.push(nuevoCurso);
-    localStorage.setItem('cursos', JSON.stringify(cursos));
+    // Limpiar mensajes de error previos
+    limpiarErrores();
 
-    agregarCursoDOM(nuevoCurso);
+    // Validaciones
+    let errores = [];
 
-    document.getElementById('formulario').reset();
+    // Validar que todos los campos estén llenos
+    if (nombre.value.trim() === '') {
+        marcarError(nombre, "El campo 'Nombre' es obligatorio.");
+        errores.push("nombre");
+    }
+    if (docente.value.trim() === '') {
+        marcarError(docente, "El campo 'Docente' es obligatorio.");
+        errores.push("docente");
+    }
+    if (fecha.value.trim() === '') {
+        marcarError(fecha, "El campo 'Fecha de inicio' es obligatorio.");
+        errores.push("fecha");
+    }
+
+    // Validar formato de la fecha (dd/mm/yyyy)
+    const fechaRegex = /^([0-2][0-9]|(3)[0-1])\/((0)[1-9]|(1)[0-2])\/\d{4}$/;
+    if (!fecha.value.match(fechaRegex)) {
+        marcarError(fecha, "El formato de la fecha es incorrecto. Use el formato dd/mm/yyyy.");
+        errores.push("fecha");
+    }
+
+    // Validar que la duración sea un número
+    if (duracion.value.trim() === '') {
+        marcarError(duracion, "El campo 'Duración' es obligatorio.");
+        errores.push("duracion");
+    } else if (!/^\d+$/.test(duracion.value.trim())) {
+        marcarError(duracion, "La duración debe ser un número.");
+        errores.push("duracion");
+    } else {
+        // Agregar "semanas" automáticamente si no está presente
+        if (!duracion.value.includes('semanas')) {
+            duracion.value += ' semanas';
+        }
+    }
+
+    if (descripcion.value.trim() === '') {
+        marcarError(descripcion, "El campo 'Descripción' es obligatorio.");
+        errores.push("descripcion");
+    }
+
+    // Si no hay errores, proceder a agregar el curso
+    if (errores.length === 0) {
+        // Crear un ID basado en el nombre
+        const id = nombre.value.replace(/\s+/g, '');
+
+        // Crear el objeto curso
+        const nuevoCurso = {
+            nombre: nombre.value,
+            docente: docente.value,
+            fecha: fecha.value,
+            duracion: duracion.value,
+            descripcion: descripcion.value,
+            id: id
+        };
+
+        // Guardar en LocalStorage
+        const cursos = JSON.parse(localStorage.getItem('cursos')) || [];
+        cursos.push(nuevoCurso);
+        localStorage.setItem('cursos', JSON.stringify(cursos));
+
+        // Agregar el curso al DOM
+        agregarCursoDOM(nuevoCurso);
+
+        // Resetear el formulario
+        document.getElementById('formulario').reset();
+    }
 });
+
+// Función para marcar un campo con error
+function marcarError(campo, mensaje) {
+    campo.classList.add('error');
+    const errorMensaje = document.createElement('span');
+    errorMensaje.classList.add('error-message');
+    errorMensaje.textContent = mensaje;
+    campo.parentNode.insertBefore(errorMensaje, campo.nextSibling); // Insertar mensaje de error
+}
+
+// Función para limpiar los errores visuales
+function limpiarErrores() {
+    const errores = document.querySelectorAll('.error');
+    errores.forEach(function(campo) {
+        campo.classList.remove('error');
+    });
+    const mensajesError = document.querySelectorAll('.error-message');
+    mensajesError.forEach(function(mensaje) {
+        mensaje.remove(); // Eliminar los mensajes de error
+    });
+}
+
+
 
 window.onload = cargarCursos;
 

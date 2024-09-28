@@ -132,15 +132,13 @@ textarea {
     font-size: 16px; /* Tamaño de letra */
 }
 
-/* Botones dentro de las secciones */
-section .btn {
-    background-color: #2980b9; /* Color de fondo */
-    color: white; /* Color del texto */
-    padding: 12px 20px; /* Espaciado interno */
-    border: none; /* Sin borde */
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer; /* Cambia el cursor al pasar */
-    transition: background-color 0.3s ease; /* Transición para el color de fondo */
+/* Cambiar color cuando el input está en foco */
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    border-color: #2980b9; /* Cambiar color del borde al enfocarse */
+    background-color: #eaf5fc; /* Cambiar color de fondo al enfocarse */
+    outline: none; /* Elimina el contorno predeterminado */
 }
 
 /* Efecto al pasar el cursor sobre el botón */
@@ -310,18 +308,26 @@ button:hover {
     background-color: #2ed573; /* Color más brillante al pasar el cursor */
 }
 
-/* Botón de eliminar (x) */
+/* Botón de eliminar (x) oculto por defecto */
 .eliminar {
     background-color: #ccc;
     color: white;
     border: none;
     padding: 5px 10px;
-    border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
+    margin-right: 1px;
+    margin-top: -32px;
+    border-radius: 50%;
     position: absolute;
-    right: 10px; /* Posición a la derecha */
-    top: 10px; /* Espaciado desde la parte superior */
-    transition: background-color 0.3s ease;
+    right: 10px;
+    display: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Mostrar la x cuando el li se agranda */
+#listacursos li:hover .eliminar {
+    display: inline-block;
 }
 
 .eliminar:hover {
@@ -339,4 +345,18 @@ footer {
     bottom: 0;
     width: 100%;
     box-shadow: 0 -1px 15px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+
+/* Estilo para los campos con error */
+input.error, textarea.error {
+    border: 2px solid red; /* Borde rojo para indicar error */
+    background-color: #ffe6e6; /* Fondo ligeramente rojo */
+}
+
+/* Estilo para mostrar un mensaje de error debajo del campo */
+.error-message {
+    color: red;
+    font-size: 0.85em;
+    margin-top: -10px;
+    margin-bottom: 10px;
 }
