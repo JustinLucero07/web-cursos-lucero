@@ -1,40 +1,9 @@
-//Se modifica para el nuevo diseño y mostrar todo los detalles
-function mostrarDetalles(id) {
-    var detalles = document.getElementById(id);
-    if (detalles.classList.contains('show')) {
-        detalles.classList.remove('show');
-    } else {
-        detalles.classList.add('show');
-    }
-}
-
-//Se modifica este metodo para agregarle una animacion al elinimar un curso de la lista
-function eliminarCurso(cursoId) {
-    const cursoElemento = document.getElementById(cursoId);
-    if (cursoElemento) {
-        // Aplicar animación de salida
-        cursoElemento.style.animation = 'fadeOut 0.3s forwards';
-        
-        // Esperar a que termine la animación para eliminar el elemento
-        setTimeout(() => {
-            cursoElemento.parentElement.remove();
-        }, 300); // Coincide con la duración de la animación (0.3s)
-    }
-
-    let cursos = JSON.parse(localStorage.getItem('cursos')) || [];
-    cursos = cursos.filter(curso => curso.id !== cursoId);
-    localStorage.setItem('cursos', JSON.stringify(cursos));
-}
-
-
-
-
 function cargarCursos() {
     const cursos = JSON.parse(localStorage.getItem('cursos')) || [];
     cursos.forEach(curso => agregarCursoDOM(curso));
 }
-//Se realiza un cambio en este metodo debido al nuevo diseño que se realiza
 
+//Se realiza un cambio en este metodo debido al nuevo diseño que se realiza
 function agregarCursoDOM(curso) {
     const nuevoCurso = document.createElement('li');
     nuevoCurso.innerHTML = `
@@ -51,21 +20,38 @@ function agregarCursoDOM(curso) {
     document.getElementById('listacursos').querySelector('ul').appendChild(nuevoCurso);
 }
 
+//Se modifica este metodo para agregarle una animacion al elinimar un curso de la lista
+function eliminarCurso(cursoId) {
+    const cursoElemento = document.getElementById(cursoId);
+    if (cursoElemento) {
+        const li = cursoElemento.parentElement;  // El elemento li del curso
+        
+        // Añadir la animación de salida
+        li.style.animation = 'slideOut 0.5s forwards';
+        
+        // Esperar a que termine la animación antes de eliminar el elemento
+        li.addEventListener('animationend', function() {
+            li.remove();  // Eliminar el li del DOM
+            
+            // Actualizar el localStorage después de eliminar el curso del DOM
+            let cursos = JSON.parse(localStorage.getItem('cursos')) || [];
+            cursos = cursos.filter(curso => curso.id !== cursoId);
+            localStorage.setItem('cursos', JSON.stringify(cursos));
+        });
+    }
+}
+
 
 document.getElementById('formulario').addEventListener('submit', function(event) {
-    event.preventDefault(); // Evitar el envío del formulario por defecto
+    event.preventDefault(); 
 
-    // Obtener los valores de los campos
     const nombre = document.getElementById('nombre');
     const docente = document.getElementById('docente');
     const fecha = document.getElementById('fecha');
     const duracion = document.getElementById('duracion');
     const descripcion = document.getElementById('descripcion');
 
-    // Limpiar mensajes de error previos
     limpiarErrores();
-
-    // Validaciones
     let errores = [];
 
     // Validar que todos los campos estén llenos
@@ -81,14 +67,12 @@ document.getElementById('formulario').addEventListener('submit', function(event)
         marcarError(fecha, "El campo 'Fecha de inicio' es obligatorio.");
         errores.push("fecha");
     }
-
     // Validar formato de la fecha (dd/mm/yyyy)
     const fechaRegex = /^([0-2][0-9]|(3)[0-1])\/((0)[1-9]|(1)[0-2])\/\d{4}$/;
     if (!fecha.value.match(fechaRegex)) {
         marcarError(fecha, "El formato de la fecha es incorrecto. Use el formato dd/mm/yyyy.");
         errores.push("fecha");
     }
-
     // Validar que la duración sea un número
     if (duracion.value.trim() === '') {
         marcarError(duracion, "El campo 'Duración' es obligatorio.");
@@ -102,12 +86,10 @@ document.getElementById('formulario').addEventListener('submit', function(event)
             duracion.value += ' semanas';
         }
     }
-
     if (descripcion.value.trim() === '') {
         marcarError(descripcion, "El campo 'Descripción' es obligatorio.");
         errores.push("descripcion");
     }
-
     // Si no hay errores, proceder a agregar el curso
     if (errores.length === 0) {
         // Crear un ID basado en el nombre
@@ -157,8 +139,6 @@ function limpiarErrores() {
     });
 }
 
-
-
 window.onload = cargarCursos;
 
 /*Animaciones*/ 
@@ -175,14 +155,14 @@ function mostrarDetalles(id) {
     }
 }
 
-// animacion para trancision entre enlaces
+// Animacion para trancision entre enlaces
 document.addEventListener("DOMContentLoaded", function() {
     const enlaces = document.querySelectorAll('nav a');
 
     enlaces.forEach(enlace => {
         enlace.addEventListener('click', function(e) {
-            e.preventDefault(); // Evita el comportamiento predeterminado del enlace
-            const destino = document.querySelector(this.getAttribute('href')); // Obtener el destino
+            e.preventDefault(); 
+            const destino = document.querySelector(this.getAttribute('href')); 
             destino.scrollIntoView({ behavior: 'smooth' }); // Desplazarse suavemente al destino
         });
     });

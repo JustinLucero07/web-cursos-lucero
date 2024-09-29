@@ -12,18 +12,16 @@ body {
 }
 /* Encabezado */
 header {
-    position: relative; /* Necesario para que la pseudo-clase ::before funcione correctamente */
+    position: relative; 
     background-image: url('imagen1.jpeg'); /* Imagen de fondo */
     background-size: cover; /* Ajusta la imagen para cubrir todo el encabezado */
     background-position: center; /* Centra la imagen en el encabezado */
     padding: 20px;
     text-align: center;
-    font-size: 2.5em; /* Tamaño de fuente mayor */
+    font-size: 2.5em; 
     letter-spacing: 1px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
-    color: #ecf0f1; /* Color del texto */
-    
-    /* Transición suave para la imagen de fondo */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+    color: #ecf0f1;
     transition: transform 0.5s ease-in-out, background-size 0.5s ease-in-out;
     background-size: 100%; /* Estado inicial del tamaño de la imagen */
 }
@@ -38,9 +36,7 @@ header::before {
     height: 100%;
     background-color: #2c3e50; /* Color encabezado*/
     opacity: 0.8; /* Opacidad inicial */
-    z-index: 1; /* Coloca la capa por encima de la imagen de fondo */
-    
-    /* Transición suave para la opacidad de la capa de color */
+    z-index: 1; 
     transition: opacity 0.5s ease-in-out;
 }
 
@@ -57,10 +53,9 @@ header:hover::before {
 
 /* Efecto de zoom en la imagen de fondo al hacer hover */
 header:hover {
-    background-size: 110%; /* Aumenta el tamaño de la imagen ligeramente */
-    transform: scale(1.05); /* Efecto de zoom suave en el encabezado */
+    background-size: 110%; 
+    transform: scale(1.05); 
 }
-
 
 /* Navegación */
 nav ul {
@@ -79,8 +74,7 @@ nav ul li a {
     transition: color 0.3s ease, transform 0.3s ease; /* Transiciones enlaces */
 }
 
-nav ul li a:focus,
-nav ul li a:active {
+nav ul li a:focus, nav ul li a:active {
     transform: scale(1.05);
 }
 
@@ -108,37 +102,33 @@ section:hover {
 
 /* Títulos de las secciones */
 section h2 {
-    font-size: 32px; /* Tamaño del texto del título */
-    color: black; /* Color del texto */
-    margin-bottom: 15px; /* Espaciado inferior */
+    font-size: 32px; 
+    color: black; 
+    margin-bottom: 15px; 
     border-bottom: 5px solid #2c3e50; /* Línea debajo del título */
-    padding-bottom: 10px; /* Espaciado interno inferior */
+    padding-bottom: 10px; 
 }
 
 /* Estilo para los párrafos dentro de las secciones */
 section p {
-    font-size: 16px; /* Tamaño de letra más pequeño */
-    color: #555; /* Color más suave para el texto */
+    font-size: 16px; 
+    color: #555; 
     line-height: 1.8; /* Espaciado entre líneas */
     margin-bottom: 20px; /* Espaciado inferior */
 }
 
 /* Inputs */
-input[type="text"],
-input[type="email"],
-textarea {
-    width: 93%; /* Ocupa todo el ancho */
-    padding: 10px; /* Espaciado interno */
-    border: 1px solid #ccc; /* Borde suave */
+input[type="text"], input[type="email"], textarea {
+    width: 93%; 
+    padding: 10px; 
+    border: 1px solid #ccc;
     border-radius: 5px; /* Bordes redondeados */
     margin-bottom: 15px; /* Espaciado inferior */
-    font-size: 16px; /* Tamaño de letra */
+    font-size: 16px; 
 }
 
 /* Cambiar color cuando el input está en foco */
-input[type="text"]:focus,
-input[type="email"]:focus,
-textarea:focus {
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
     border-color: #2980b9; /* Cambiar color del borde al enfocarse */
     background-color: #eaf5fc; /* Cambiar color de fondo al enfocarse */
     outline: none; /* Elimina el contorno predeterminado */
@@ -171,22 +161,26 @@ section .btn:hover {
     margin-bottom: 10px;
     padding: 15px;
     position: relative;
-    transition: background-color 0.3s, transform 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación suave */
     opacity: 0;
     transform: translateY(-20px);
-    animation: slideIn 0.3s forwards; /* Animación al agregar */
-    justify-content: space-between;
+    animation: slideIn 0.3s forwards; /* Animación al agregar curso */
+}
+
+#listacursos li:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
 }
 
 /* Al eliminar el curso */
-#listacursos li.eliminar-animation {
+#listacursos li .eliminar{
     animation: slideOut 0.3s forwards; /* Animación al eliminar */
 }
 
 #listacursos strong {
-    font-size: 1.5em; /* Tamaño de fuente mayor */
-    font-family: 'Georgia', serif; /* Fuente elegante */
-    color: black; /* Color del texto */
+    font-size: 1.3em; 
+    font-family: 'Georgia', serif; 
+    color: black; 
 }
 
 @keyframes slideIn {
@@ -197,20 +191,14 @@ section .btn:hover {
 }
 
 @keyframes slideOut {
-    from {
-        opacity: 1;
-        transform: translateY(0);
+    0% {
+        transform: translateX(0); /* Posición original */
+        opacity: 1; /* Toda la opacidad */
     }
-    to {
-        opacity: 0;
-        transform: translateY(-20px);
+    100% {
+        transform: translateX(100%); /* Desplazar hacia la izquierda */
+        opacity: 1; /* Desvanecer */
     }
-}
-
-/* Hover en elementos de cursos */
-#listacursos li:hover {
-    background-color: #e0e0e0;
-    transform: scale(1.05); /* Efecto de escala en hover */
 }
 
 /* Curso */
@@ -238,24 +226,23 @@ form {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-form label,
-form input,
-form textarea {
+form label, form input, form textarea {
     margin-bottom: 10px;
 }
 
 form button {
-    width: 99%;
+    width: 101%;
     padding: 16px;
-    background-color: #d4b35c; /* Color elegante */
+    background-color: #d1b74b; 
     border: none;
     color: white;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Corregido el error de tiempo */
+    margin-left: -1px;
+    transition: background-color 0.3s ease; 
 }
 
 form button:hover {
-    background-color: #b79a4e; /* Color más oscuro al hacer hover */
+    background-color: #ac8d3f; /* Color más oscuro al hacer hover */
 }
 
 /* Detalles */
@@ -279,20 +266,16 @@ form button:hover {
 
 /* Estilo de los párrafos en detalles */
 .detalles p {
-    font-size: 18px; /* Tamaño mayor */
+    font-size: 15px; 
     color: #555;
     margin: 5px 0;
     line-height: 1.5;
     transition: color 0.3s ease; /* Transición para color */
 }
 
-.detalles p:hover {
-    color: #007bff; /* Cambia color al pasar el cursor */
-}
-
 /* Estilo del botón "Ver más detalles" */
 button {
-    background-color: rgb(15, 125, 105); /*Color botón detalles*/
+    background-color: #d1b74b; /*Color botón detalles*/
     color: white;
     border: none;
     padding: 10px 15px;
@@ -308,7 +291,7 @@ button {
 }
 
 button:hover {
-    background-color: rgb(20, 46, 46); /* Color más brillante al pasar el cursor */
+    background-color: #ac8d3f; /* Color más brillante al pasar el cursor */
 }
 
 /* Botón de eliminar (x) oculto por defecto */
@@ -319,7 +302,7 @@ button:hover {
     padding: 5px 10px;
     cursor: pointer;
     font-size: 16px;
-    margin-right: 1px;
+    margin-right: 25px;
     margin-top: -32px;
     border-radius: 50%;
     position: absolute;
@@ -340,19 +323,19 @@ button:hover {
 
 /* Footer */
 footer {
-    background-color: #2c3e50; /* Color elegante */
-    color: #ecf0f1; /* Color de texto claro */
+    background-color: #2c3e50; 
+    color: #ecf0f1; 
     text-align: center;
     padding: 20px;
     position: relative;
     bottom: 0;
-    width: 100%;
+    width: 97.3%;
     box-shadow: 0 -1px 15px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
 }
 
 /* Estilo para los campos con error */
 input.error, textarea.error {
-    border: 2px solid red; /* Borde rojo para indicar error */
+    border: 2px solid red; 
     background-color: #ffe6e6; /* Fondo ligeramente rojo */
 }
 
