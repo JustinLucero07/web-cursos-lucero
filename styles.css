@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #eaeaea; /* Color de fondo suave */
+    background-color: #eaeaea; /* Color de fondo */
 }
 
 #titulo{
@@ -113,7 +113,7 @@ section h2 {
 section p {
     font-size: 16px; 
     color: #555; 
-    line-height: 1.8; /* Espaciado entre líneas */
+    line-height: 1.8; 
     margin-bottom: 20px; /* Espaciado inferior */
 }
 
@@ -294,7 +294,7 @@ button:hover {
     background-color: #ac8d3f; /* Color más brillante al pasar el cursor */
 }
 
-/* Botón de eliminar (x) oculto por defecto */
+/* Botón de eliminar x oculto por defecto */
 .eliminar {
     background-color: #ccc;
     color: white;
