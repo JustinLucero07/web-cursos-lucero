@@ -1,3 +1,4 @@
+//"Proyecto Completado"
 function cargarCursos() {
     const cursos = JSON.parse(localStorage.getItem('cursos')) || [];
     cursos.forEach(curso => agregarCursoDOM(curso));
