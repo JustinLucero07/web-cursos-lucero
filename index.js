@@ -55,7 +55,7 @@ document.getElementById('formulario').addEventListener('submit', function(event)
     limpiarErrores();
     let errores = [];
 
-    // Validar que todos los campos estén llenos
+    // Validaciones de todos los inputs
     if (nombre.value.trim() === '') {
         marcarError(nombre, "El campo 'Nombre' es obligatorio.");
         errores.push("nombre");
@@ -68,13 +68,11 @@ document.getElementById('formulario').addEventListener('submit', function(event)
         marcarError(fecha, "El campo 'Fecha de inicio' es obligatorio.");
         errores.push("fecha");
     }
-    // Validar formato de la fecha (dd/mm/yyyy)
     const fechaRegex = /^([0-2][0-9]|(3)[0-1])\/((0)[1-9]|(1)[0-2])\/\d{4}$/;
     if (!fecha.value.match(fechaRegex)) {
         marcarError(fecha, "El formato de la fecha es incorrecto. Use el formato dd/mm/yyyy.");
         errores.push("fecha");
     }
-    // Validar que la duración sea un número
     if (duracion.value.trim() === '') {
         marcarError(duracion, "El campo 'Duración' es obligatorio.");
         errores.push("duracion");
@@ -91,7 +89,6 @@ document.getElementById('formulario').addEventListener('submit', function(event)
         marcarError(descripcion, "El campo 'Descripción' es obligatorio.");
         errores.push("descripcion");
     }
-    // Si no hay errores, proceder a agregar el curso
     if (errores.length === 0) {
         // Crear un ID basado en el nombre
         const id = nombre.value.replace(/\s+/g, '');
@@ -142,7 +139,7 @@ function limpiarErrores() {
 
 window.onload = cargarCursos;
 
-/*Animaciones*/ 
+//Animaciones ver detalles
 function mostrarDetalles(id) {
     const detalles = document.getElementById(id);
     if (detalles.style.display === "none" || detalles.style.display === "") {
